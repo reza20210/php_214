@@ -36,7 +36,7 @@ Route::prefix('admin')->group(function () {
     });
 
     // Admin Login
-    Route::get('/login', 'AdminUserController@index');
+    Route::get('/login', 'AdminUserController@index')->name('login');
     Route::post('/login', 'AdminUserController@login');
 });
 

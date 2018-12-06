@@ -53,12 +53,14 @@ class Handler extends ExceptionHandler
     public function unauthenticated($request, AuthenticationException $exception)
     {
         $guard = array_get($exception->guards(), 0);
+
         switch ($guard) {
+            //  when admin not login yet
             case 'admin':
                 return redirect('/admin/login');
                 break;
             default :
-                return redirect('/login');
+                return redirect('/');
                 break;
         }
     }

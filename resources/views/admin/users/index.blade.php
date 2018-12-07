@@ -35,7 +35,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-success ti-close" title="Block User"></button>
+                                    {{--<button class="btn btn-sm btn-success ti-close" title="Block User"></button>--}}
                                     {{ link_to_route('users.show', 'Details', $user->id, ['class' => 'btn btn-success btn-sm']) }}
                                     {{--<button class="btn btn-sm btn-success ti-close" title="Block User"></button>
                                     <button class="btn btn-sm btn-primary ti-view-list-alt"

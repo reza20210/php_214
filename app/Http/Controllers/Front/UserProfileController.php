@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\User;
-use Illuminate\Http\Request;
 
 class UserProfileController extends Controller
 {

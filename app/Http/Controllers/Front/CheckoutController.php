@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use App\Order;
 use App\OrderItem;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
@@ -10,6 +11,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use http\Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -30,8 +32,7 @@ class CheckoutController extends Controller
         })->values()->toJson();
 
         try {
-
-            Stripe::charges()->create([
+            /*Stripe::charges()->create([
                 'amount' => Cart::total(),
                 'currency' => 'USD',
                 'source' => $request->stripeToken,
@@ -40,8 +41,7 @@ class CheckoutController extends Controller
                     'contents' => $contents,
                     'quantity' => Cart::instance('default')->count()
                 ]
-            ]);
-
+            ]);*/
 
             // Insert into orders table
             $order = Order::create([
@@ -53,18 +53,17 @@ class CheckoutController extends Controller
 
             // Insert into order items table
             foreach (Cart::instance('default')->content() as $item) {
-
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item->model->id,
                     'quantity' => $item->qty,
                     'price' => $item->price
                 ]);
-
             }
 
             Cart::instance('default')->destroy();
-
+            
+            Mail::to('reza@example.com')->send(new OrderMail($order));
 
             return redirect()->back()->with('msg', 'Success Thank you');
             // Success
@@ -72,6 +71,5 @@ class CheckoutController extends Controller
         } catch (Exception $e) {
             // Code
         }
-
     }
 }

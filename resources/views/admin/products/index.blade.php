@@ -44,10 +44,10 @@
                                     {{--use laravel collective package--}}
 
                                     {{ Form::open(['route' => ['products.destroy', $product->id], 'method' => 'delete']) }}
-                                    {{ Form::button('<span class="fa fa-trash"></span>', ['type' => 'submit', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("Are you sure want to delete this?")']) }}
+                                    {{ Form::button('<span class="fa fa-trash"></span>', ['type' => 'submit', 'class' => 'btn btn-sm btn-danger', 'onclick' => 'return confirm("Are you sure want to delete this?")', 'title' => 'delete']) }}
 
-                                    {{ link_to_route('products.edit', '', $product->id, ['class' => 'btn btn-sm btn-info ti-pencil']) }}
-                                    {{ link_to_route('products.show', '', $product->id, ['class' => 'btn btn-sm btn-primary ti-list']) }}
+                                    {{ link_to_route('products.edit', '', $product->id, ['class' => 'btn btn-sm btn-info ti-pencil', 'title' => 'edit']) }}
+                                    {{ link_to_route('products.show', '', $product->id, ['class' => 'btn btn-sm btn-primary ti-list', 'title' => 'show']) }}
                                     {{ Form::close() }}
                                     {{--<button class="btn btn-sm btn-info ti-pencil-alt" title="Edit"></button>
                                     <button class="btn btn-sm btn-danger ti-trash" title="Delete"></button>

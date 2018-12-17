@@ -2,6 +2,8 @@
 
 @section('content')
 
+    @include('front.layouts.search')
+
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
         <h5 class="display-3"><strong>Welcome,</strong></h5>

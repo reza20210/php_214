@@ -6,6 +6,10 @@
 
 @section('content')
 
+    @if(session()->has('msg'))
+        <div class="alert alert-warning">{{ session()->get('msg') }}</div>
+    @endif
+
     <div class="row">
 
         <div class="col-md-12">

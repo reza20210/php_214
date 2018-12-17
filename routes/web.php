@@ -46,6 +46,12 @@ Route::prefix('admin')->group(function () {
  */
 
 Route::get('/', 'Front\HomeController@index');
+Route::post('/', 'Front\HomeController@search')->name('search');
+
+/*
+ * Search Route
+ */
+
 
 /*
 * User Routes

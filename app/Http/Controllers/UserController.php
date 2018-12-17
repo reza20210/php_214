@@ -16,6 +16,14 @@ class UserController extends Controller
     public function show($id)
     {
         $orders = Order::where('user_id', $id)->get();
-        return view('admin.users.details', compact('orders'));
+        if (empty($orders[0])) {
+            // Session message
+            session()->flash('msg', 'The user has not ordered anything yet.');
+            // Redirect the page
+            return redirect()->back();
+        } else {
+            return view('admin.users.details', compact('orders'));
+        }
     }
+
 }
